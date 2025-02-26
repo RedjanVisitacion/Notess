@@ -45,25 +45,20 @@ INSERT INTO Customers (CustomerID, Name, Email, Phone) VALUES
 ('2023305059','Jhon Peter Codilla', 'johnpeter@gmail.com', '09123456789'),
 ('2023304637','Redjan Phil S. Visitacion', 'visitacionredjanphils@gmail.com', '09534181760');
 
+INSERT INTO Authors (AuthorID, Name, Country) VALUES
+('1','J.K. Rowling', 'PH'),
+('2','George R.R. Martin', 'PH'),
+('3','J.R.R. Tolkien', 'PH'),
+('4','Stephen King', 'PH'),
+('5','Agatha Christie', 'PH');
 
+INSERT INTO Books (BookID, Title, Price, AuthorID) VALUES
+('1','Harry Potter', 29.99, 1),
+('2','Game of Thrones', 34.99, 2),
+('3','The Hobbit', 19.99, 3),
+('4','The Shining', 24.99, 4),
+('5','Murder on the Orient Express', 14.99, 5);
 
-
-
--- Insert sample authors
-INSERT INTO Authors (Name, Country) VALUES
-('J.K. Rowling', 'UK'),
-('George R.R. Martin', 'USA'),
-('J.R.R. Tolkien', 'UK'),
-('Stephen King', 'USA'),
-('Agatha Christie', 'UK');
-
--- Insert sample books
-INSERT INTO Books (Title, Price, AuthorID) VALUES
-('Harry Potter', 29.99, 1),
-('Game of Thrones', 34.99, 2),
-('The Hobbit', 19.99, 3),
-('The Shining', 24.99, 4),
-('Murder on the Orient Express', 14.99, 5);
 
 -- Insert sample orders
 INSERT INTO Orders (CustomerID, OrderDate, TotalAmount) VALUES
@@ -82,33 +77,3 @@ INSERT INTO Payments (OrderID, PaymentDate, AmountPaid, PaymentMethod) VALUES
 (5, '2025-02-24', 14.99, 'Bank Transfer');
 
 
----
-
-Step 5: Database Normalization
-
-1. 1NF: Each column has atomic values (no repeating groups).
-
-
-2. 2NF: No partial dependencies (each non-key attribute is fully dependent on the primary key).
-
-
-3. 3NF: No transitive dependencies (every non-key attribute depends only on the primary key).
-
-
-4. BCNF: All tables meet the BCNF conditions since every determinant is a candidate key.
-
-
-
-
----
-
-Step 6: Generating Screenshots
-
-I can’t directly execute SQL, but you can run these queries in MySQL or PostgreSQL and take screenshots of:
-
-Table structures (DESC Customers;, etc.)
-
-Inserted data (SELECT * FROM Customers;, etc.)
-
-
-Would you like any modifications or additional explanations?
