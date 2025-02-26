@@ -1,93 +1,4 @@
-CREATE TABLE Customers (
-    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(100),
-    Email VARCHAR(100) UNIQUE,
-    Phone VARCHAR(15)
-);
-
-CREATE TABLE Authors (
-    AuthorID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(100),
-    Country VARCHAR(50)
-);
-
-CREATE TABLE Books (
-    BookID INT PRIMARY KEY AUTO_INCREMENT,
-    Title VARCHAR(255),
-    Price DECIMAL(10,2),
-    AuthorID INT,
-    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID)
-);
-
-CREATE TABLE Orders (
-    OrderID INT PRIMARY KEY AUTO_INCREMENT,
-    CustomerID INT,
-    OrderDate DATE,
-    TotalAmount DECIMAL(10,2),
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
-);
-
-CREATE TABLE Payments (
-    PaymentID INT PRIMARY KEY AUTO_INCREMENT,
-    OrderID INT,
-    PaymentDate DATE,
-    AmountPaid DECIMAL(10,2),
-    PaymentMethod VARCHAR(50),
-    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
-);
-
-Let's consider a real-world scenario of an online bookstore where customers can purchase books from different authors. The system will keep track of customers, books, authors, orders, and payments.
-
-
----
-
-Step 1: Identifying Key Entities
-
-The main entities in this scenario are:
-
-1. Customers – Users who purchase books.
-
-
-2. Books – Items available for purchase.
-
-
-3. Authors – Writers of the books.
-
-
-4. Orders – Records of customer purchases.
-
-
-5. Payments – Transactions related to orders.
-
-
-
-
----
-
-Step 2: Designing the Database Schema (3NF/BCNF)
-
-Tables and Relationships:
-
-1. Customers (CustomerID is the primary key)
-
-
-2. Authors (AuthorID is the primary key)
-
-
-3. Books (BookID is the primary key, AuthorID is a foreign key)
-
-
-4. Orders (OrderID is the primary key, CustomerID is a foreign key)
-
-
-5. Payments (PaymentID is the primary key, OrderID is a foreign key)
-
-
-
-
----
-
-Step 3: Creating Tables (SQL Schema)
+CREATE DATABASE Act3_VISITACION;
 
 CREATE TABLE Customers (
     CustomerID INT PRIMARY KEY AUTO_INCREMENT,
@@ -127,18 +38,16 @@ CREATE TABLE Payments (
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
 );
 
+INSERT INTO Customers (CustomerID, Name, Email, Phone) VALUES
+('2023305011','Silver Heyrana', 'heyranasilver@gmail.com', '09023305011'),
+('2023306356','Ian Kirby', 'kirbydumz@gmail.com', '09023306356'),
+('2023304142','Lollaine Puerte', 'guilllainey@gmail.com', '09023304142'),
+('2023305059','Jhon Peter Codilla', 'johnpeter@gmail.com', '09123456789'),
+('2023304637','Redjan Phil S. Visitacion', 'visitacionredjanphils@gmail.com', '09534181760');
 
----
 
-Step 4: Inserting Sample Data
 
--- Insert sample customers
-INSERT INTO Customers (Name, Email, Phone) VALUES
-('Alice Johnson', 'alice@example.com', '1234567890'),
-('Bob Smith', 'bob@example.com', '9876543210'),
-('Charlie Davis', 'charlie@example.com', '5556667777'),
-('David Wilson', 'david@example.com', '1112223333'),
-('Eve Adams', 'eve@example.com', '4445556666');
+
 
 -- Insert sample authors
 INSERT INTO Authors (Name, Country) VALUES
