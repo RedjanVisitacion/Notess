@@ -36,3 +36,170 @@ CREATE TABLE Payments (
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
 );
 
+Let's consider a real-world scenario of an online bookstore where customers can purchase books from different authors. The system will keep track of customers, books, authors, orders, and payments.
+
+
+---
+
+Step 1: Identifying Key Entities
+
+The main entities in this scenario are:
+
+1. Customers – Users who purchase books.
+
+
+2. Books – Items available for purchase.
+
+
+3. Authors – Writers of the books.
+
+
+4. Orders – Records of customer purchases.
+
+
+5. Payments – Transactions related to orders.
+
+
+
+
+---
+
+Step 2: Designing the Database Schema (3NF/BCNF)
+
+Tables and Relationships:
+
+1. Customers (CustomerID is the primary key)
+
+
+2. Authors (AuthorID is the primary key)
+
+
+3. Books (BookID is the primary key, AuthorID is a foreign key)
+
+
+4. Orders (OrderID is the primary key, CustomerID is a foreign key)
+
+
+5. Payments (PaymentID is the primary key, OrderID is a foreign key)
+
+
+
+
+---
+
+Step 3: Creating Tables (SQL Schema)
+
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100),
+    Email VARCHAR(100) UNIQUE,
+    Phone VARCHAR(15)
+);
+
+CREATE TABLE Authors (
+    AuthorID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100),
+    Country VARCHAR(50)
+);
+
+CREATE TABLE Books (
+    BookID INT PRIMARY KEY AUTO_INCREMENT,
+    Title VARCHAR(255),
+    Price DECIMAL(10,2),
+    AuthorID INT,
+    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID)
+);
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT,
+    OrderDate DATE,
+    TotalAmount DECIMAL(10,2),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+CREATE TABLE Payments (
+    PaymentID INT PRIMARY KEY AUTO_INCREMENT,
+    OrderID INT,
+    PaymentDate DATE,
+    AmountPaid DECIMAL(10,2),
+    PaymentMethod VARCHAR(50),
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+);
+
+
+---
+
+Step 4: Inserting Sample Data
+
+-- Insert sample customers
+INSERT INTO Customers (Name, Email, Phone) VALUES
+('Alice Johnson', 'alice@example.com', '1234567890'),
+('Bob Smith', 'bob@example.com', '9876543210'),
+('Charlie Davis', 'charlie@example.com', '5556667777'),
+('David Wilson', 'david@example.com', '1112223333'),
+('Eve Adams', 'eve@example.com', '4445556666');
+
+-- Insert sample authors
+INSERT INTO Authors (Name, Country) VALUES
+('J.K. Rowling', 'UK'),
+('George R.R. Martin', 'USA'),
+('J.R.R. Tolkien', 'UK'),
+('Stephen King', 'USA'),
+('Agatha Christie', 'UK');
+
+-- Insert sample books
+INSERT INTO Books (Title, Price, AuthorID) VALUES
+('Harry Potter', 29.99, 1),
+('Game of Thrones', 34.99, 2),
+('The Hobbit', 19.99, 3),
+('The Shining', 24.99, 4),
+('Murder on the Orient Express', 14.99, 5);
+
+-- Insert sample orders
+INSERT INTO Orders (CustomerID, OrderDate, TotalAmount) VALUES
+(1, '2025-02-20', 29.99),
+(2, '2025-02-21', 34.99),
+(3, '2025-02-22', 19.99),
+(4, '2025-02-23', 24.99),
+(5, '2025-02-24', 14.99);
+
+-- Insert sample payments
+INSERT INTO Payments (OrderID, PaymentDate, AmountPaid, PaymentMethod) VALUES
+(1, '2025-02-20', 29.99, 'Credit Card'),
+(2, '2025-02-21', 34.99, 'PayPal'),
+(3, '2025-02-22', 19.99, 'Debit Card'),
+(4, '2025-02-23', 24.99, 'Credit Card'),
+(5, '2025-02-24', 14.99, 'Bank Transfer');
+
+
+---
+
+Step 5: Database Normalization
+
+1. 1NF: Each column has atomic values (no repeating groups).
+
+
+2. 2NF: No partial dependencies (each non-key attribute is fully dependent on the primary key).
+
+
+3. 3NF: No transitive dependencies (every non-key attribute depends only on the primary key).
+
+
+4. BCNF: All tables meet the BCNF conditions since every determinant is a candidate key.
+
+
+
+
+---
+
+Step 6: Generating Screenshots
+
+I can’t directly execute SQL, but you can run these queries in MySQL or PostgreSQL and take screenshots of:
+
+Table structures (DESC Customers;, etc.)
+
+Inserted data (SELECT * FROM Customers;, etc.)
+
+
+Would you like any modifications or additional explanations?
