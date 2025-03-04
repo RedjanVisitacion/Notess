@@ -60,13 +60,12 @@ INSERT INTO Books (BookID, Title, Price, AuthorID) VALUES
 ('5','Murder on the Orient Express', 14.99, 5);
 
 
--- Insert sample orders
-INSERT INTO Orders (CustomerID, OrderDate, TotalAmount) VALUES
-(1, '2025-02-20', 29.99),
-(2, '2025-02-21', 34.99),
-(3, '2025-02-22', 19.99),
-(4, '2025-02-23', 24.99),
-(5, '2025-02-24', 14.99);
+INSERT INTO Orders (OrderID, CustomerID, OrderDate, TotalAmount) VALUES
+(1, '2023305011', '2025-02-20', 29.99),
+(2, '2023306356', '2025-02-21', 34.99),
+(3, '2023304142', '2025-02-22', 19.99),
+(4, '2023305059', '2025-02-23', 24.99),
+(5, '2023304637', '2025-02-24', 14.99);
 
 -- Insert sample payments
 INSERT INTO Payments (OrderID, PaymentDate, AmountPaid, PaymentMethod) VALUES
