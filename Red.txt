@@ -74,3 +74,9 @@ INSERT INTO Payments (PaymentID, OrderID, PaymentDate, AmountPaid, PaymentMethod
 (5,'5', '2025-02-24', 14.99, 'Bank Transfer');
 
 
+
+--LEFT JOIN--
+SELECT Orders.orderID, Payments.Amountpaid
+FROM Orders
+LEFT JOIN payments on Orders.OrderID = Payments.OrderID;
+
