@@ -84,3 +84,8 @@ LEFT JOIN payments on Orders.OrderID = Payments.OrderID;
 SELECT Authors.AuthorID, Books.Title
 FROM Authors
 RIGHT JOIN Books on Authors.AuthorID = Books.AuthorID;
+
+--CROSS JOIN--
+SELECT Orders.OrderID, Customers.Name
+FROM Orders
+CROSS JOIN Customers;
