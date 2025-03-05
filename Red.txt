@@ -94,3 +94,10 @@ RIGHT JOIN Books on Authors.AuthorID = Books.AuthorID;
 SELECT Orders.OrderID, Customers.Name
 FROM Orders
 CROSS JOIN Customers;
+
+--SELF JOIN--
+SELECT A.Name AS AuthorName1, B.Name AS AuthorName2, A.Country
+FROM Authors A, Authors B
+WHERE A.AuthorID <> B.AuthorID
+AND A.Country = B.Country
+ORDER BY A.Country;
