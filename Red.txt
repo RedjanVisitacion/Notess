@@ -51,6 +51,11 @@ INSERT INTO Authors (AuthorID, Name, Country) VALUES
 ('3','J.R.R. Tolkien', 'PH'),
 ('4','Stephen King', 'PH'),
 ('5','Agatha Christie', 'PH');
+('6','Jj Moon', 'India'),
+('7','Jorgena', 'USA'),
+('8','Pangoy', 'China'),
+('9','Concha', 'Cambodia'),
+('10','Rizal', 'China');
 
 INSERT INTO Books (BookID, Title, Price, AuthorID) VALUES
 ('1','Harry Potter', 29.99, 1),
