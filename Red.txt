@@ -80,3 +80,7 @@ SELECT Orders.orderID, Payments.Amountpaid
 FROM Orders
 LEFT JOIN payments on Orders.OrderID = Payments.OrderID;
 
+--RIGHT JOIN--
+SELECT Authors.AuthorID, Books.Title
+FROM Authors
+RIGHT JOIN Books on Authors.AuthorID = Books.AuthorID;
