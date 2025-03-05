@@ -59,7 +59,6 @@ INSERT INTO Books (BookID, Title, Price, AuthorID) VALUES
 ('4','The Shining', 24.99, 4),
 ('5','Murder on the Orient Express', 14.99, 5);
 
-
 INSERT INTO Orders (OrderID, CustomerID, OrderDate, TotalAmount) VALUES
 (1, '2023305011', '2025-02-20', 29.99),
 (2, '2023306356', '2025-02-21', 34.99),
