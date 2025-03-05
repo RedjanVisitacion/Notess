@@ -66,12 +66,11 @@ INSERT INTO Orders (OrderID, CustomerID, OrderDate, TotalAmount) VALUES
 (4, '2023305059', '2025-02-23', 24.99),
 (5, '2023304637', '2025-02-24', 14.99);
 
--- Insert sample payments
-INSERT INTO Payments (OrderID, PaymentDate, AmountPaid, PaymentMethod) VALUES
-(1, '2025-02-20', 29.99, 'Credit Card'),
-(2, '2025-02-21', 34.99, 'PayPal'),
-(3, '2025-02-22', 19.99, 'Debit Card'),
-(4, '2025-02-23', 24.99, 'Credit Card'),
-(5, '2025-02-24', 14.99, 'Bank Transfer');
+INSERT INTO Payments (PaymentID, OrderID, PaymentDate, AmountPaid, PaymentMethod) VALUES
+(1,'1', '2025-02-20', 29.99, 'Credit Card'),
+(2,'2', '2025-02-21', 34.99, 'PayPal'),
+(3,'3', '2025-02-22', 19.99, 'Debit Card'),
+(4,'4', '2025-02-23', 24.99, 'Credit Card'),
+(5,'5', '2025-02-24', 14.99, 'Bank Transfer');
 
 
