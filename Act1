@@ -1,0 +1,64 @@
+It looks like the erased parts involve writing the SQL queries for steps like inserting data, retrieving records, updating information, and deleting records. Based on the instructions in your document, here’s how you can complete the missing parts:
+
+
+---
+
+Step 3: Insert Sample Data
+
+To insert employee records into the employees table:
+
+INSERT INTO employees (first_name, last_name, email, salary, hire_date, department) 
+VALUES 
+('John', 'Doe', 'john.doe@example.com', 55000, '2022-05-10', 'IT'),
+('Alice', 'Brown', 'alice.brown@example.com', 62000, '2021-08-15', 'HR'),
+('Michael', 'Smith', 'michael.smith@example.com', 70000, '2020-12-01', 'Finance');
+
+
+---
+
+Step 4: Retrieve Data (SELECT Statement)
+
+1. Retrieve all employee details:
+
+SELECT * FROM employees;
+
+2. Retrieve employees working in the IT department:
+
+SELECT * FROM employees WHERE department = 'IT';
+
+3. Retrieve employees with a salary greater than 60,000:
+
+SELECT * FROM employees WHERE salary > 60000;
+
+
+---
+
+Step 5: Update Employee Data
+
+Update John Doe’s salary to 58,000:
+
+UPDATE employees  
+SET salary = 58000  
+WHERE first_name = 'John' AND last_name = 'Doe';
+
+
+---
+
+Step 6: Delete an Employee Record
+
+Delete the employee with the email alice.brown@example.com:
+
+DELETE FROM employees WHERE email = 'alice.brown@example.com';
+
+
+---
+
+Step 7: Drop the Table
+
+If needed, remove the table or database entirely:
+
+DROP TABLE employees;
+DROP DATABASE company_YourLastName;
+
+Let me know if you need any modifications!
+
