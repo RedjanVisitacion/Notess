@@ -158,7 +158,7 @@ FROM employees
 WHERE salary > (
 SELECT AVG(salary) 
 FROM employees);
-
+--5pts
 --------------------------------------------------------------------
 
 -- 2. Retrieve employees with their department names using a JOIN 
@@ -169,7 +169,7 @@ SELECT e.first_name, e.last_name, d.department_name
 FROM employees e
 JOIN departments d 
 ON e.department_id = d.department_id;
-
+--5pts
 
 --------------------------------------------------------------------
 
@@ -179,7 +179,7 @@ ON e.department_id = d.department_id;
 --------------------------------------------------------------------
 
 SELECT * FROM employees WHERE hire_date < '2022-05-20';
-
+--5pts
 --------------------------------------------------------------------
 
 -- 4. Retrieve the department with the highest average salary using a subquery 
@@ -192,11 +192,18 @@ WHERE salary > (
 SELECT AVG(salary) 
 FROM employees)
 LIMIT 1;
-
+--3pts
 --------------------------------------------------------------------
 
 -- 5. Retrieve the total number of employees in each department using a JOIN 
---query here
+--------------------------//[query here]//-------------------------- 
+--------------------------------------------------------------------
 
 
 
+
+--------------------------------------------------------------------
+
+
+
+--18
