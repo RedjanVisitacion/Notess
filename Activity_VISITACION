@@ -65,9 +65,12 @@ FROM employees;
 --------------//[AVERAGE SALARY EACH DEPARTMENT]//-------------
 ---------------------------------------------------------------
 
-SELECT d.department_name, AVG(salary) AS avg_salary
+SELECT d.department_name, 
+AVG(salary) 
+AS avg_salary
 FROM employees e
-JOIN departments d ON e.department_id = d.department_id
+JOIN departments d 
+ON e.department_id = d.department_id
 GROUP BY department_name;
 
 -------------------------//[ASCENDING]//-----------------------
@@ -78,7 +81,8 @@ ORDER BY hire_date;
 -------------------------//[DECENDING]//-----------------------
 SELECT first_name,last_name
 FROM employees
-ORDER BY salary DESC;
+ORDER BY salary 
+DESC;
 
 
 -------------------------//[LIMITING]//------------------------
@@ -88,14 +92,23 @@ LIMIT 5;
 
 SELECT first_name,last_name
 FROM employees
-WHERE department_id = 2 AND salary > 60000;
+WHERE department_id = 2 
+AND salary > 60000;
 
 
 -------//[CONCATINATION OF FIRST NAME AND LAST NAME]//---------
 
-SELECT CONCAT(first_name,' ',last_name) AS full_name,
-salary AS monthly_income
+SELECT CONCAT(first_name,' ',last_name) 
+AS full_name,salary 
+AS monthly_income
 FROM employees;
+
+
+SELECT first_name,last_name,salary
+FROM employees
+WHERE salary > (
+SELECT AVG(salary) 
+FROM employees);
 
 
 ---------------------------------------------------------------
