@@ -39,3 +39,63 @@ INSERT INTO employees (first_name, last_name, department_id, salary, hire_date) 
 	('Steve', 'Martinez', 3, 67000.00, '2017-02-28'), 
 	('Tina', 'Roberts', 4, 54000.00, '2019-10-10');
 
+--//[STEP 3]//--
+
+--------------------------//[EXAMPLE]//------------------------
+---------------------------------------------------------------
+
+SELECT AVG(salary) FROM employees;
+
+SELECT * FROM employees ORDER BY salary ASC;
+
+SELECT * FROM employees ORDER BY salary DESC;
+
+SELECT * FROM employees WHERE salary > 50000 AND 
+department_id = 2;
+
+SELECT department_id, AVG(salary) FROM employees GROUP BY 
+department_id; 
+
+SELECT * FROM employees ORDER BY hire_date DESC; 
+
+SELECT first_name AS "First Name", last_name AS "Last Name" 
+FROM employees; 
+
+
+--------------//[AVERAGE SALARY EACH DEPARTMENT]//-------------
+---------------------------------------------------------------
+
+SELECT d.department_name, AVG(salary) AS avg_salary
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+GROUP BY department_name;
+
+-------------------------//[ASCENDING]//-----------------------
+SELECT first_name,last_name,hire_date
+FROM employees
+ORDER BY hire_date;
+
+-------------------------//[DECENDING]//-----------------------
+SELECT first_name,last_name
+FROM employees
+ORDER BY salary DESC;
+
+
+-------------------------//[LIMITING]//------------------------
+LIMIT 5;
+
+----------//[IT DEPT EMP SALARY GREATER THEN 60000]//----------
+
+SELECT first_name,last_name
+FROM employees
+WHERE department_id = 2 AND salary > 60000;
+
+
+
+---------------------------------------------------------------
+---------------------------------------------------------------
+
+--//[ACTIVITY]//--
+
+
+
