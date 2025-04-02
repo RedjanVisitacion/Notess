@@ -91,6 +91,12 @@ FROM employees
 WHERE department_id = 2 AND salary > 60000;
 
 
+-------//[CONCATINATION OF FIRST NAME AND LAST NAME]//---------
+
+SELECT CONCAT(first_name,' ',last_name) AS full_name,
+salary AS monthly_income
+FROM employees;
+
 
 ---------------------------------------------------------------
 ---------------------------------------------------------------
