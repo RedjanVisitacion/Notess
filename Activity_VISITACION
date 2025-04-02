@@ -1,0 +1,41 @@
+--//[STEP 2]//--
+
+CREATE TABLE employees (
+    emp_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(50),
+	last_name VARCHAR(50),
+	department_id INT,
+	salary NUMERIC(10,2),
+	hire_date DATE
+);
+
+CREATE TABLE departments (
+    department_id SERIAL PRIMARY KEY,
+	department_name VARCHAR(100)
+);
+
+INSERT INTO departments (department_name) VALUES
+('HR'), ('IT'), ('Finance'), ('Marketing'), ('Operations');
+
+INSERT INTO employees (first_name, last_name, department_id, salary, hire_date) VALUES 
+    ('Alice', 'Johnson', 1, 50000.00, '2020-06-15'),
+	('Bob', 'Smith', 2, 70000.00, '2019-03-22'), 
+	('Charlie', 'Brown', 3, 65000.00, '2018-07-11'), 
+	('David', 'Wilson', 2, 72000.00, '2017-10-30'), 
+	('Eve', 'Adams', 4, 55000.00, '2021-01-19'), 
+	('Frank', 'Miller', 5, 48000.00, '2018-12-05'), 
+	('Grace', 'Taylor', 1, 52000.00, '2019-08-25'), 
+	('Hank', 'Anderson', 2, 68000.00, '2020-02-14'), 
+	('Ivy', 'Thomas', 3, 66000.00, '2022-05-20'), 
+	('Jack', 'White', 4, 53000.00, '2018-09-30'), 
+	('Karen', 'Hall', 5, 49000.00, '2023-03-11'), 
+	('Leo', 'Harris', 1, 51000.00, '2020-11-23'), 
+	('Mona', 'Clark', 2, 71000.00, '2017-06-07'), 
+	('Nate', 'Lewis', 3, 64000.00, '2019-04-15'), 
+	('Olivia', 'King', 4, 56000.00, '2021-12-01'), 
+	('Paul', 'Allen', 5, 47000.00, '2018-07-20'), 
+	('Quinn', 'Scott', 1, 53000.00, '2022-09-05'), 
+	('Rachel', 'Green', 2, 69000.00, '2016-11-18'), 
+	('Steve', 'Martinez', 3, 67000.00, '2017-02-28'), 
+	('Tina', 'Roberts', 4, 54000.00, '2019-10-10');
+
