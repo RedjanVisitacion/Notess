@@ -147,6 +147,8 @@ column.
 
 -- Activity: Subqueries & Joins 
 
+--------------------------------------------------------------------
+
 -- 1. Retrieve employees who earn more than the average salary 
 --------------------------//[query here]//--------------------------
 --------------------------------------------------------------------
@@ -170,12 +172,23 @@ ON e.department_id = d.department_id;
 
 
 --------------------------------------------------------------------
+
 -- 3. Retrieve employees who joined before a specific employee (e.g., 'Ivy 
-Thomas') 
---query here 
+'Thomas') 
+--------------------------//[query here]//-------------------------- 
+--------------------------------------------------------------------
+
+SELECT * FROM employees WHERE hire_date < '2022-05-20';
+
+--------------------------------------------------------------------
 
 -- 4. Retrieve the department with the highest average salary using a subquery 
---query here 
+--------------------------//[query here]//-------------------------- 
+--------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------
 
 -- 5. Retrieve the total number of employees in each department using a JOIN 
 --query here
