@@ -186,7 +186,12 @@ SELECT * FROM employees WHERE hire_date < '2022-05-20';
 --------------------------//[query here]//-------------------------- 
 --------------------------------------------------------------------
 
-
+SELECT department_name,salary
+FROM employees, departments
+WHERE salary > (
+SELECT AVG(salary) 
+FROM employees)
+LIMIT 1;
 
 --------------------------------------------------------------------
 
