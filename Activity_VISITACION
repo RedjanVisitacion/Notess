@@ -1,4 +1,5 @@
---//[STEP 2]//--
+---------------------------//[STEP 2]//------------------------
+---------------------------------------------------------------
 
 CREATE TABLE employees (
     emp_id SERIAL PRIMARY KEY,
@@ -39,27 +40,10 @@ INSERT INTO employees (first_name, last_name, department_id, salary, hire_date) 
 	('Steve', 'Martinez', 3, 67000.00, '2017-02-28'), 
 	('Tina', 'Roberts', 4, 54000.00, '2019-10-10');
 
---//[STEP 3]//--
 
---------------------------//[EXAMPLE]//------------------------
+---------------------------//[STEP 3]//------------------------
 ---------------------------------------------------------------
-
-SELECT AVG(salary) FROM employees;
-
-SELECT * FROM employees ORDER BY salary ASC;
-
-SELECT * FROM employees ORDER BY salary DESC;
-
-SELECT * FROM employees WHERE salary > 50000 AND 
-department_id = 2;
-
-SELECT department_id, AVG(salary) FROM employees GROUP BY 
-department_id; 
-
-SELECT * FROM employees ORDER BY hire_date DESC; 
-
-SELECT first_name AS "First Name", last_name AS "Last Name" 
-FROM employees; 
+--------------------------//[EXAMPLE]//------------------------
 
 
 --------------//[AVERAGE SALARY EACH DEPARTMENT]//-------------
@@ -111,10 +95,78 @@ SELECT AVG(salary)
 FROM employees);
 
 
+
+-- Explanation of SQL Clauses & Functions 
+-- AVG(): Returns the average value of a column. 
+-- Example: SELECT AVG(salary) FROM employees; 
+
+-- ASC: Sorts the result in ascending order (default sorting order). 
+-- Example: SELECT * FROM employees ORDER BY salary ASC; 
+
+-- DESC: Sorts the result in descending order. 
+-- Example: SELECT * FROM employees ORDER BY salary DESC; 
+
+-- AND: Combines multiple conditions in a WHERE clause. 
+-- Example: SELECT * FROM employees WHERE salary > 50000 AND 
+department_id = 2; 
+
+-- GROUP BY: Groups the result set based on one or more columns, often used 
+with aggregate functions. 
+
+-- Example: SELECT department_id, AVG(salary) FROM employees GROUP BY 
+department_id; 
+
+-- ORDER BY: Sorts the results based on a specified column. 
+-- Example: SELECT * FROM employees ORDER BY hire_date DESC; 
+
+-- AS: Renames a column or table in the query result. 
+
+-- Example: SELECT first_name AS "First Name", last_name AS "Last Name" 
+FROM employees; 
+
+-- Explanation of Subqueries & Joins 
+
+-- Subqueries: A subquery is a query within another query. It is used to retrieve 
+data that will be used in the main query. 
+
+-- Example: Finding employees who earn more than the average salary. 
+-- Joins: A JOIN is used to combine data from multiple tables based on a related 
+column. 
+
+-- Example: Retrieving employees along with their department names. 
+
+--Provide the query after each given scenario.
+
+
 ---------------------------------------------------------------
 ---------------------------------------------------------------
 
---//[ACTIVITY]//--
+------------------------//[ACTIVITY]//-------------------------
+
+--Provide the query after each given scenario. 
+
+-- Activity: Subqueries & Joins 
+
+-- 1. Retrieve employees who earn more than the average salary 
+
+--query here
+
+-- 2. Retrieve employees with their department names using a JOIN 
+
+--query here 
+
+-- 3. Retrieve employees who joined before a specific employee (e.g., 'Ivy 
+Thomas') 
+
+--query here 
+
+-- 4. Retrieve the department with the highest average salary using a subquery 
+
+--query here 
+
+-- 5. Retrieve the total number of employees in each department using a JOIN 
+
+--query here
 
 
 
