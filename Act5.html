@@ -1,0 +1,105 @@
+CREATE TABLE Customers (
+    customer_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    city VARCHAR(50),
+    points INT
+);
+
+INSERT INTO Customers VALUES
+(1, 'John', 'Doe', 'Cagayan', 2500),
+(2, 'Jane', 'Smith', 'Villanueva', 3500),
+(3, 'Alice', 'Reyes', 'Claveria', 4000),
+(4, 'Bob', 'Santos', 'Jasaan', 2000);
+
+CREATE TABLE Orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    total_amount DECIMAL(10,2),
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+INSERT INTO Orders VALUES
+(101, 1, '2024-01-10', 500),
+(102, 2, '2024-01-11', 1200),
+(103, 1, '2024-01-12', 300),
+(104, 3, '2024-01-13', 700),
+(105, 3, '2024-01-14', 900);
+
+
+CREATE TABLE Employees (
+    emp_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    department_id INT,
+    salary DECIMAL(10,2)
+);
+
+INSERT INTO Employees VALUES
+(201, 'Karen', 'Lopez', 10, 45000),
+(202, 'Mark', 'Cruz', 20, 55000),
+(203, 'Tina', 'Yu', 10, 47000),
+(204, 'Sam', 'Dela Cruz', 30, 52000);
+
+CREATE TABLE Sales (
+    sale_id INT PRIMARY KEY,
+    emp_id INT,
+    sales DECIMAL(10,2),
+    FOREIGN KEY (emp_id) REFERENCES Employees(emp_id)
+);
+
+INSERT INTO Sales VALUES
+(301, 201, 42000),
+(302, 202, 56000),
+(303, 203, 47000),
+(304, 204, 40000);
+
+
+---------------------//[Answer]//-------------------------
+
+--//[1. Basic Aggregates]:
+
+--#[1]:
+SELECT COUNT (customer_id)
+FROM Customers;
+
+--#[2]:
+SELECT SUM (total_amount)
+FROM Orders;
+
+--#[3]:
+SELECT MAX (total_amount)
+FROM Orders;
+
+--#[4]:
+SELECT AVG (salary)
+FROM employees;
+
+--#[5]:
+SELECT emp_id, SUM (sales)
+FROM sales
+GROUP BY emp_id;
+
+--//[2. Using GROUP BY and HAVING]:
+
+--#[1]:
+SELECT customer_id, SUM (total_amount)
+FROM Orders
+GROUP BY order_id;
+
+--#[2]:
+SELECT COUNT (customer_id),city
+FROM Customers
+GROUP BY city
+HAVING SUM (points) > 3000;
+
+--#[3]:
+SELECT department_id
+FROM Employees e
+GROUP BY e.department_id
+HAVING AVG (salary) > 50000;
+
+--#[4]:
+
+
