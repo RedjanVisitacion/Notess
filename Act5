@@ -101,5 +101,55 @@ GROUP BY e.department_id
 HAVING AVG (salary) > 50000;
 
 --#[4]:
+SELECT customer_id, COUNT(*)
+AS order_count
+FROM orders
+GROUP BY customer_id;
+
+----------[Nested Queries Exercises]-----------
+
+--//[1. Subquery in WHERE Clause]:
+
+--#[1]:
+SELECT * 
+FROM Customers 
+WHERE points > (SELECT AVG(points) FROM Customers);
+
+--#[2]:
+SELECT * 
+FROM Employees 
+WHERE salary < (SELECT MAX(salary) FROM Employees);
+
+--#[3]:
+SELECT * FROM Employees 
+WHERE emp_id IN (
+    SELECT emp_id 
+    FROM Sales 
+    WHERE sales > (SELECT AVG(sales) FROM Sales)
+);
 
 
+--//[2. Correlated Nested Queries]:
+
+--#[1]:
+SELECT * FROM Customers c
+WHERE (
+    SELECT COUNT(*) 
+    FROM Orders o 
+    WHERE o.customer_id = c.customer_id
+) > 1;
+
+
+
+--#[2]:
+SELECT * FROM Employees e
+WHERE (
+    SELECT s.sales 
+    FROM Sales s 
+    WHERE s.emp_id = e.emp_id
+) > (
+    SELECT AVG(s2.sales)
+    FROM Sales s2
+    JOIN Employees e2 ON s2.emp_id = e2.emp_id
+    WHERE e2.department_id = e.department_id
+);
