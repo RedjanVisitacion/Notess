@@ -1,34 +1,30 @@
-CREATE DATABASE company_YourLastName;
-
--- Create department table
 CREATE TABLE dept (
-    deptno INTEGER PRIMARY KEY,
-    dname VARCHAR(20),
-    loc VARCHAR(20)
+  deptno INT PRIMARY KEY,
+  dname VARCHAR(20),
+  loc VARCHAR(20)
 );
 
--- Create employee table
-CREATE TABLE employees (
-    empno INT PRIMARY KEY,
-    ename VARCHAR(20),
-    job VARCHAR(20),
-    mgr INT,
-    hiredate DATE,
-    sal NUMERIC(10,2),
-    comm NUMERIC(10,2) NULL,
-    deptno INT
+CREATE TABLE emp (
+  empno INT PRIMARY KEY,
+  ename VARCHAR(20),
+  job VARCHAR(20),
+  mgr INT,
+  hiredate DATE,
+  sal NUMERIC(10, 2),
+  comm NUMERIC(10, 2),
+  deptno INT,
+  FOREIGN KEY (deptno) REFERENCES dept(deptno)
 );
 
 
--- Insert sample data into dept
-INSERT INTO dept VALUES
+INSERT INTO dept VALUES 
 (10, 'ACCOUNTING', 'NEW YORK'),
 (20, 'RESEARCH', 'DALLAS'),
 (30, 'SALES', 'CHICAGO'),
 (40, 'OPERATIONS', 'BOSTON');
 
--- Insert sample data into emp
-INSERT INTO employees (empno, ename, job, mgr, hiredate, sal, comm, deptno) VALUES
+
+INSERT INTO emp (empno, ename, job, mgr, hiredate, sal, comm, deptno) VALUES
 (7369, 'SMITH', 'CLERK', 7902, '1980-12-17', 800.00, NULL, 20),
 (7499, 'ALLEN', 'SALESMAN', 7698, '1981-02-20', 1600.00, 300.00, 30),
 (7521, 'WARD', 'SALESMAN', 7698, '1981-02-22', 1250.00, 500.00, 30),
@@ -43,6 +39,10 @@ INSERT INTO employees (empno, ename, job, mgr, hiredate, sal, comm, deptno) VALU
 (7900, 'JAMES', 'CLERK', 7698, '1981-12-03', 950.00, NULL, 30),
 (7902, 'FORD', 'ANALYST', 7566, '1981-12-03', 3000.00, NULL, 20),
 (7934, 'MILLER', 'CLERK', 7782, '1982-01-23', 1300.00, NULL, 10);
+
+drop table dept;
+drop table emp;
+drop view employee_overview;
 
 
 
@@ -70,34 +70,30 @@ SELECT * FROM department_summary;
 SELECT * FROM department_summary
 WHERE avg_salary > 2000;
 
+
 CREATE VIEW high_earners AS
 SELECT ename, sal, sal * 12 AS annual_salary
 FROM emp
 WHERE sal > 2000;
 
-INSERT INTO high_earners (ename, sal) VALUES ('TEST_EMP', 2500);
+
+INSERT INTO high_earners (ename, sal) VALUES ('NEWGUY', 2500);
+
 
 CREATE VIEW dept_locations AS
 SELECT DISTINCT loc FROM dept;
 
-UPDATE dept_locations
-SET loc = 'LOS ANGELES'
-WHERE loc = 'DALLAS';
+UPDATE dept_locations SET loc = 'BOSTON' WHERE loc = 'CHICAGO';
 
 CREATE VIEW employee_contacts AS
-SELECT e.ename AS employee_name,
-       e.job,
-       d.dname,
-       d.loc,
+SELECT e.ename AS employee_name, e.job, d.dname, d.loc,
        m.ename AS manager_name
 FROM emp e
-JOIN dept d ON e.deptno = d.deptno
+LEFT JOIN dept d ON e.deptno = d.deptno
 LEFT JOIN emp m ON e.mgr = m.empno;
 
-
 CREATE VIEW salary_analysis AS
-SELECT d.dname,
-       e.job,
+SELECT d.dname, e.job,
        COUNT(*) AS num_employees,
        AVG(e.sal) AS avg_salary,
        MIN(e.sal) AS min_salary,
