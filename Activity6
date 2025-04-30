@@ -1,0 +1,99 @@
+CREATE DATABASE company_YourLastName;
+
+-- Create department table
+CREATE TABLE dept (
+    deptno INTEGER PRIMARY KEY,
+    dname VARCHAR(20),
+    loc VARCHAR(20)
+);
+
+-- Create employee table
+CREATE TABLE emp (
+    empno INTEGER PRIMARY KEY,
+    ename VARCHAR(20),
+    job VARCHAR(20),
+    mgr INTEGER,
+    hiredate DATE,
+    sal NUMERIC(8, 2),
+    comm NUMERIC(8, 2),
+    deptno INTEGER REFERENCES dept(deptno)
+);
+
+-- Insert sample data into dept
+INSERT INTO dept VALUES
+(10, 'ACCOUNTING', 'NEW YORK'),
+(20, 'RESEARCH', 'DALLAS'),
+(30, 'SALES', 'CHICAGO'),
+(40, 'OPERATIONS', 'BOSTON');
+
+-- Insert sample data into emp
+INSERT INTO emp VALUES
+(7839, 'KING', 'PRESIDENT', NULL, '1981-11-17', 5000, NULL, 10),
+(7698, 'BLAKE', 'MANAGER', 7839, '1981-05-01', 2850, NULL, 30),
+(7782, 'CLARK', 'MANAGER', 7839, '1981-06-09', 2450, NULL, 10),
+(7566, 'JONES', 'MANAGER', 7839, '1981-04-02', 2975, NULL, 20),
+(7788, 'SCOTT', 'ANALYST', 7566, '1987-07-13', 3000, NULL, 20),
+(7902, 'FORD', 'ANALYST', 7566, '1981-12-03', 3000, NULL, 20),
+(7900, 'JAMES', 'CLERK', 7698, '1981-12-03', 950, NULL, 30),
+(7934, 'MILLER', 'CLERK', 7782, '1982-01-23', 1300, NULL, 10);
+
+
+CREATE VIEW employee_overview AS
+SELECT empno, ename, job, sal, deptno
+FROM emp
+WHERE sal > 1500;
+
+SELECT * FROM employee_overview;
+
+SELECT * FROM employee_overview
+WHERE job = 'MANAGER';
+
+CREATE VIEW department_summary AS
+SELECT d.deptno, d.dname, d.loc,
+       COUNT(e.empno) AS num_employees,
+       AVG(e.sal) AS avg_salary,
+       SUM(e.sal) AS total_salary
+FROM dept d
+LEFT JOIN emp e ON d.deptno = e.deptno
+GROUP BY d.deptno, d.dname, d.loc;
+
+SELECT * FROM department_summary;
+
+SELECT * FROM department_summary
+WHERE avg_salary > 2000;
+
+CREATE VIEW high_earners AS
+SELECT ename, sal, sal * 12 AS annual_salary
+FROM emp
+WHERE sal > 2000;
+
+INSERT INTO high_earners (ename, sal) VALUES ('TEST_EMP', 2500);
+
+CREATE VIEW dept_locations AS
+SELECT DISTINCT loc FROM dept;
+
+UPDATE dept_locations
+SET loc = 'LOS ANGELES'
+WHERE loc = 'DALLAS';
+
+CREATE VIEW employee_contacts AS
+SELECT e.ename AS employee_name,
+       e.job,
+       d.dname,
+       d.loc,
+       m.ename AS manager_name
+FROM emp e
+JOIN dept d ON e.deptno = d.deptno
+LEFT JOIN emp m ON e.mgr = m.empno;
+
+
+CREATE VIEW salary_analysis AS
+SELECT d.dname,
+       e.job,
+       COUNT(*) AS num_employees,
+       AVG(e.sal) AS avg_salary,
+       MIN(e.sal) AS min_salary,
+       MAX(e.sal) AS max_salary
+FROM emp e
+JOIN dept d ON e.deptno = d.deptno
+GROUP BY d.dname, e.job;
